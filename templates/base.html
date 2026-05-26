@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Auto Parts Shop{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f4f6f8;
+        }
+        header {
+            background: #1f2937;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header a {
+            color: white;
+            text-decoration: none;
+            margin-left: 1rem;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1rem;
+        }
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .btn {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 0.6rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-danger {
+            background: #dc2626;
+        }
+        .search-bar {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .search-bar input {
+            flex: 1;
+            padding: 0.7rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+        th, td {
+            padding: 0.8rem;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div><strong>Auto Parts Shop</strong></div>
+        <nav>
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('cart') }}">Cart ({{ cart_count }})</a>
+        </nav>
+    </header>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
