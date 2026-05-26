@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}{{ part.name }} - Auto Parts Shop{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h1>{{ part.name }}</h1>
+    <p><strong>ID:</strong> {{ part.id }}</p>
+    <p><strong>Manufacturer:</strong> {{ part.manufacturer }}</p>
+    <p><strong>Price:</strong> {{ part.price }}</p>
+    <p><strong>Description:</strong> {{ part.description }}</p>
+
+    <form method="post" action="{{ url_for('add_to_cart', part_id=part.id) }}">
+        <button class="btn" type="submit">Add to Cart</button>
+    </form>
+</div>
+{% endblock %}

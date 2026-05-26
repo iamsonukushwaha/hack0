@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Products - Auto Parts Shop{% endblock %}
+
+{% block content %}
+<h1>Automobile Parts</h1>
+
+<form class="search-bar" method="get" action="{{ url_for('index') }}">
+    <input type="text" name="q" placeholder="Search by name, description, manufacturer, price" value="{{ query }}">
+    <button class="btn" type="submit">Search</button>
+</form>
+
+<div class="grid">
+    {% for part in parts %}
+    <div class="card">
+        <h3>{{ part.name }}</h3>
+        <p><strong>Manufacturer:</strong> {{ part.manufacturer }}</p>
+        <p><strong>Price:</strong> {{ part.price }}</p>
+        <a class="btn" href="{{ url_for('product_detail', part_id=part.id) }}">View Details</a>
+        <form method="post" action="{{ url_for('add_to_cart', part_id=part.id) }}" style="margin-top: 0.5rem;">
+            <button class="btn" type="submit">Add to Cart</button>
+        </form>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

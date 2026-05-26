@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Your Cart - Auto Parts Shop{% endblock %}
+
+{% block content %}
+<h1>Your Cart</h1>
+
+{% if items %}
+<table>
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Manufacturer</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in items %}
+        <tr>
+            <td>{{ item.part.name }}</td>
+            <td>{{ item.part.manufacturer }}</td>
+            <td>{{ item.part.price }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ "%.2f"|format(item.subtotal) }}</td>
+            <td>
+                <form method="post" action="{{ url_for('remove_from_cart', part_id=item.part.id) }}">
+                    <button class="btn btn-danger" type="submit">Remove</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h2 style="margin-top: 1rem;">Total: {{ "%.2f"|format(total) }}</h2>
+{% else %}
+<p>Your cart is empty.</p>
+{% endif %}
+{% endblock %}
